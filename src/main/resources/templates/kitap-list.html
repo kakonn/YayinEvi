@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+
+<title>Kitap Listesi</title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<h1>Liste</h1>
+
+<table class="table table-bordered table-striped">
+   <thead>
+    <tr>
+        <th>Kitap Isbn</th>
+        <th>Kitap  Adı</th>
+        <th>Kitap Alt Adı</th>
+        <th>Kitap Seri Adı</th>
+        <th>Yazar</th>
+        <th>Yayın Evi</th>
+        <th>İşlemler</th>
+        </thead>
+
+      
+    </tr>
+    
+    <tbody>
+    <tr th:each="kitap : ${kitaplar}">
+       <td th:text="${kitap.kitapIsbn}"/>
+       <td th:text="${kitap.kitapAdi}"/>
+      <td th:text="${kitap.kitapAltAdi}"/>
+      
+     <td th:text="${kitap.kitapSeriAdi}"/> 
+     <td>
+                    <th:block th:each="yzr : ${kitap.yazar}">
+                        <span th:text="${yzr.yazarAdi} + ' '"></span>
+                    </th:block>
+                </td>
+                 <td>
+                    <th:block th:each="yyn : ${kitap.yayinEvi}">
+                        <span th:text="${yyn.yayinEviAdi} + ' '"></span>
+                    </th:block>
+                </td>
+                <td>
+                <a th:href="@{'/kitap/update-kitap/' + ${kitap.kitapIsbn}}" class="btn btn-default">Güncelle</a>
+                <div sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{'/kitap/delete-kitap/' + ${kitap.kitapIsbn}}" class="btn btn-danger">Sil</a>
+                </div>
+                
+                </td>
+   </tr>
+   
+    </tbody>
+</table>
+ <a th:href="@{'/kitap/add-kitap/'}" class="btn btn-primary">Kitap Ekle</a>
+ <hr>
+  <a th:href="@{'/yayinevi/list/'}" class="btn btn-primary">Yayın Evi Listesi</a>
+    <a th:href="@{'/yazar/list/'}" class="btn btn-primary">Yazar Listesi</a>
+    <hr>
+<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger"/>
+        </form>
+        
+</body>
+</html>

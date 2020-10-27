@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Yayın Evi Listesi</title>
+
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<h1>Liste</h1>
+
+
+<table class="table table-bordered table-striped">
+    <head class="thead-dark">
+    <tr>
+        <th>Id</th>
+        <th>Yayin Evi Adı</th>
+        <th>Açıklama</th>
+      <th>İşlemler</th>
+      
+    </tr>
+    </head>
+    <tbody>
+    <tr th:each="yayin : ${yayinevleri}">
+       <td th:text="${yayin.yayinEviId}"/>
+      <td th:text="${yayin.yayinEviAdi}"/>
+     <td th:text="${yayin.yayinEviAciklama}"/>
+    <td>
+                <a th:href="@{'/yayinevi/update-yayinevi/' + ${yayin.yayinEviId}}" class="btn btn-default">Güncelle</a>
+                <div sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{'/yayinevi/delete-yayinevi/' + ${yayin.yayinEviId}}" class="btn btn-danger">Sil</a>
+                </div>
+                
+                </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{'/yayinevi/add-yayinevi/'}" class="btn btn-primary">Yayın Evi Ekle</a>
+<hr>
+    <a th:href="@{'/yazar/list/'}" class="btn btn-primary">Yazar Listesi</a>
+    <a th:href="@{'/kitap/list/'}" class="btn btn-primary"> Kitap Listesi</a>
+    <hr>
+<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger"/>
+        </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Ana Sayfa</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<div class="container" align="center">
+	
+       
+    <a th:href="@{'/yayinevi/list/'}" class="btn btn-primary">Yayın Evi Listesi</a>
+    <a th:href="@{'/yazar/list/'}" class="btn btn-primary">Yazar Listesi</a>
+    <a th:href="@{'/kitap/list/'}" class="btn btn-primary"> Kitap Listesi</a>
+    
+        
+ <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger"/>
+        </form>
+ </div> 
+</body>
+</html>

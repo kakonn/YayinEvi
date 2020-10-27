@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+
+<title>Yayın Evi Form</title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<h1>Yayın Evi Ekle</h1>
+
+
+<form action="#" th:action="@{/yayinevi/save-yayinevi}" th:object="${yayinevi}" method="POST">
+       
+
+	<div class="col-md-4">
+		<div class="panel panel-default">
+		 <div class="form-group">
+		 
+		  <input type="hidden" th:field="*{yayinEviId}" id="yayinEviId">
+           Yayin Evi Adı: <input type="text" th:field="*{yayinEviAdi}" class="form-control"/><br/>
+           <p class="alert alert-danger" th:if="${#fields.hasErrors('yayinEviAdi')}" th:errors="*{yayinEviAdi}">
+       
+       </div>
+         <div class="form-group">
+           Açıklama: <input type="text" th:field="*{yayinEviAciklama}" class="form-control"/>   <br/>     
+          
+		</div>
+        <input type="submit" value="Kaydet" class="btn btn-primary"/>
+        <a th:href="@{'/yayinevi/list/'}" class="btn btn-primary">Geri Dön</a>
+</div>
+
+</form>
+<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger"/>
+        </form>
+</body>
+</html>

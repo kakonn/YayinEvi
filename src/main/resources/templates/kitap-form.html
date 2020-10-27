@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+
+<title>Kitap Form</title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<h1>Kitap Ekle</h1>
+
+
+<form action="#" th:action="@{/kitap/save-kitap}" th:object="${kitap}" method="POST">
+       
+
+		<div class ="form-group">
+           Kitap Isbn: <input type="text" th:field="*{kitapIsbn}" class="form-control"/><br/>
+            <p class="alert alert-danger" th:if="${#fields.hasErrors('kitapIsbn')}" th:errors="*{kitapIsbn}">
+           </div>
+           <div class ="form-group">
+           Kitap Adı: <input type="text" th:field="*{kitapAdi}"/ class="form-control">   <br/> 
+           <p class="alert alert-danger" th:if="${#fields.hasErrors('kitapAdi')}" th:errors="*{kitapAdi}">
+            </div>    
+             <div class ="form-group">
+           Kitap Alt Adı: <input type="text" th:field="*{kitapAltAdi}" class="form-control"/><br/>
+           <p class="alert alert-danger" th:if="${#fields.hasErrors('kitapAltAdi')}" th:errors="*{kitapAltAdi}">
+           </div>
+            <div class ="form-group">
+           Kitap Seri Adı:  <input type="text" th:field="*{kitapSeriAdi}" class="form-control"/> <br/>
+           <p class="alert alert-danger" th:if="${#fields.hasErrors('kitapSeriAdi')}" th:errors="*{kitapSeriAdi}">
+     </div>
+			<div class="col-md-6">
+		 <div class="form-group">
+                <label for="yazar">Yazar</label>
+                <select id="yazar" class="form-control" th:field="*{yazar.yazarId}" multiple="multiple">
+                    <option th:each="yzr : ${yazarlar}" th:text="${yzr.yazarAdi}" th:value="${yzr.yazarId}"></option>
+                </select>
+               
+            </div>
+				
+			 <div class="form-group">
+                <label for="yazar">Yayın Evi</label>
+                <select id="yazar" class="form-control" th:field="*{yayinEvi.yayinEviId}" multiple="multiple">
+                    <option th:each="yyn : ${yayinevleri}" th:text="${yyn.yayinEviAdi}" th:value="${yyn.yayinEviId}"></option>
+                </select>
+                
+            </div>
+		
+        <input type="submit" value="Kaydet" class="btn btn-primary"/>
+        <a th:href="@{'/kitap/list/'}" class="btn btn-primary"> Geri Dön</a>
+</div>
+
+</form>
+<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger"/>
+        </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<title>Yazar Form</title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<h1>Yazar Ekle</h1>
+
+
+<form action="#" th:action="@{/yazar/save-yazar}" th:object="${yazar}" method="POST">
+       
+
+	<div class="col-md-4">
+		<div class="panel panel-default">
+		 
+		 <div class="form-group">
+		  <input type="hidden" th:field="*{yazarId}" id="yazarId">
+           Yazar Adı: <input type="text" th:field="*{yazarAdi}" class="form-control"/><br/>
+           <div class="form-group"></div></div>
+           <p class="alert alert-danger" th:if="${#fields.hasErrors('yazarAdi')}" th:errors="*{yazarAdi}">
+           </div>
+           Açıklama: <input type="text" value="hop" th:field="*{yazarAciklama}" class="form-control"/>   <br/>     
+     	
+		</div>	
+			<div class="col-md-6">
+		
+        <input type="submit" value="Kaydet" class="btn btn-primary"/>
+        <a th:href="@{'/yazar/add-yazar/'}" class="btn btn-primary">Geri Dön</a>
+</div>
+</form>
+ 
+<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-danger"/>
+        </form>
+</body>
+</html>
