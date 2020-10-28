@@ -45,4 +45,11 @@ public class KitapServiceImpl implements KitapService {
 
 	}
 
+	@Override
+	public List<Kitap> searchList(String araKitap) {
+		if(araKitap != null)
+			return kitapRepository.ara(araKitap);
+		return (List<Kitap>) kitapRepository.findAll();
+	}
+
 }

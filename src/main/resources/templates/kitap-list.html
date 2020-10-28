@@ -13,6 +13,22 @@
 <body>
 <h1>Liste</h1>
 
+<form th:action="@{/kitap/ara-kitap}" method="get">
+	<div class="input-group">
+    <input type="text" th:name="ara" id="ara" size="50"  required class="form-control"/>
+   <div class="input-group-append">
+    <input type="submit" value="Ara" class="btn btn-primary"/>
+    
+    <input type="button" value="Temizle" id="btnClear" onclick="clearSearch()" class="btn btn-danger" />
+    </div>
+    </div>
+    <script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/kitap/list}]]";
+    }
+</script>
+</form>
+<hr>
 <table class="table table-bordered table-striped">
    <thead>
     <tr>
@@ -47,15 +63,17 @@
                 </td>
                 <td>
                 <a th:href="@{'/kitap/update-kitap/' + ${kitap.kitapIsbn}}" class="btn btn-default">Güncelle</a>
-                <div sec:authorize="hasRole('ADMIN')">
-                <a th:href="@{'/kitap/delete-kitap/' + ${kitap.kitapIsbn}}" class="btn btn-danger">Sil</a>
-                </div>
+              
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{'/kitap/delete-kitap/' + ${kitap.kitapIsbn}}" class="btn btn-danger">Sil</a>
+             
                 
                 </td>
    </tr>
    
     </tbody>
 </table>
+
+
  <a th:href="@{'/kitap/add-kitap/'}" class="btn btn-primary">Kitap Ekle</a>
  <hr>
   <a th:href="@{'/yayinevi/list/'}" class="btn btn-primary">Yayın Evi Listesi</a>

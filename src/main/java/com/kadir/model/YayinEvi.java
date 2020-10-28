@@ -23,17 +23,31 @@ public class YayinEvi {
 	@SequenceGenerator(name = "yyn-seq", sequenceName = "YAYIN_EVI_SEQ", allocationSize = 1)
 	@Column(name = "yayin_evi_id")
 	private Long yayinEviId;
-	
+
 	@NotNull(message = "Yayın Evi Adı Boş Bırakılamaz!")
-	@Size(min = 5, max=100)
+	@Size(min = 5, max = 100)
 	@Column(name = "yayin_evi_adi")
 	private String yayinEviAdi;
 
 	@Column(name = "yayin_evi_aciklama")
 	private String yayinEviAciklama;
 
-	@OneToMany(mappedBy = "yayinEvi",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "yayinEvi", cascade = CascadeType.ALL)
 	private List<Kitap> yayinEviKitaplar;
+
+	public YayinEvi() {
+
+	}
+
+	public YayinEvi(Long yayinEviId,
+			@NotNull(message = "Yayın Evi Adı Boş Bırakılamaz!") @Size(min = 5, max = 100) String yayinEviAdi,
+			String yayinEviAciklama) {
+
+		this.yayinEviId = yayinEviId;
+		this.yayinEviAdi = yayinEviAdi;
+		this.yayinEviAciklama = yayinEviAciklama;
+
+	}
 
 	public Long getYayinEviId() {
 		return yayinEviId;

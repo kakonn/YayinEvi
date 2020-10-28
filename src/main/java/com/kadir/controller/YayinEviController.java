@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,11 @@ public class YayinEviController {
 
 	@Autowired
 	YayinEviService yayinEviService;
+
+	@BeforeEach
+	public void setUp() {
+
+	}
 
 	@GetMapping("/list")
 	public String listYayinEvi(Model model) {

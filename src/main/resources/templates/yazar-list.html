@@ -30,9 +30,9 @@
      <td th:text="${yazar.yazarAciklama}"/>
       <td>
                 <a th:href="@{'/yazar/update-yazar/' + ${yazar.yazarId}}" class="btn btn-default">Güncelle</a>
-                <div sec:authorize="hasRole('ADMIN')">
-                 <a th:href="@{'/yazar/delete-yazar/' + ${yazar.yazarId}}" class="btn btn-danger">Sil</a>
-                </div>
+                
+                 <a  sec:authorize="hasRole('ADMIN')" th:href="@{'/yazar/delete-yazar/' + ${yazar.yazarId}}" class="btn btn-danger">Sil</a>
+               
                
                 </td>
     </tr>

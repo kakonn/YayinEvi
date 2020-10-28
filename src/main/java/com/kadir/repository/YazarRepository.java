@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.kadir.model.Yazar;
 
 @Repository
-public interface YazarRepository extends CrudRepository<Yazar, Long>{
-	
-	
-	
+public interface YazarRepository extends CrudRepository<Yazar, Long> {
+
 }

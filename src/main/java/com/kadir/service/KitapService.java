@@ -13,5 +13,6 @@ public interface KitapService {
 	public Kitap save(Kitap kitap);
 
 	public void delete(String kitapId);
-
+	
+	public List<Kitap> searchList(String araKitap);
 }

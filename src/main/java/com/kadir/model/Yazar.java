@@ -25,15 +25,29 @@ public class Yazar {
 	private Long yazarId;
 
 	@NotNull(message = "Yazar Adı Boş Bırakılamaz!")
-	@Size(min = 5, max=100)
+	@Size(min = 5, max = 100)
 	@Column(name = "YAZAR_ADI")
 	private String yazarAdi;
-	
+
 	@Column(name = "YAZAR_ACIKLAMA")
 	private String yazarAciklama;
 
 	@OneToMany(mappedBy = "yazar", cascade = CascadeType.ALL)
 	private List<Kitap> yazarKitap;
+
+	public Yazar() {
+
+	}
+
+	public Yazar(Long yazarId,
+			@NotNull(message = "Yazar Adı Boş Bırakılamaz!") @Size(min = 5, max = 100) String yazarAdi,
+			String yazarAciklama) {
+
+		this.yazarId = yazarId;
+		this.yazarAdi = yazarAdi;
+		this.yazarAciklama = yazarAciklama;
+
+	}
 
 	public Long getYazarId() {
 		return yazarId;

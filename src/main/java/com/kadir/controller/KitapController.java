@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kadir.model.Kitap;
 import com.kadir.service.KitapService;
@@ -72,7 +73,7 @@ public class KitapController {
 
 	@PostMapping("/save-kitap")
 	public String saveKitap(@ModelAttribute("kitap") Kitap kitap, BindingResult bindingResult) {
-		
+
 		if (bindingResult.hasErrors()) {
 			return "kitap-form";
 		} else {
@@ -81,4 +82,12 @@ public class KitapController {
 		}
 	}
 
+	@GetMapping("/ara-kitap")
+	public String araKitap(@RequestParam(value = "ara", required = false) String araKitap, Model model) {
+		
+		List<Kitap> searchList = kitapService.searchList(araKitap.toLowerCase());
+		model.addAttribute("kitaplar", searchList);
+
+		return "kitap-list";
+	}
 }

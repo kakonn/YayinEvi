@@ -12,37 +12,53 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "KITAP")
 public class Kitap {
-	
+
 	@NotNull(message = "Kitap Isbn Boş Bırakılamaz!")
-	@Size(min = 12, max=13)
+	@Size(min = 12, max = 13)
 	@Id
 	@Column(name = "kitap_isbn")
 	private String kitapIsbn;
-	
+
 	@NotNull(message = "Kitap Adı Boş Bırakılamaz!")
-	@Size(min = 5, max=100)
+	@Size(min = 5, max = 100)
 	@Column(name = "kitap_adi")
 	private String kitapAdi;
 
 	@NotNull(message = "Kitap Alt Adı Boş Bırakılamaz!")
-	@Size(min = 5, max=100)
+	@Size(min = 5, max = 100)
 	@Column(name = "kitap_alt_adi")
 	private String kitapAltAdi;
-	
+
 	@NotNull(message = "Kitap Seri Adı Boş Bırakılamaz!")
-	@Size(min = 5, max=100)
+	@Size(min = 5, max = 100)
 	@Column(name = "kitap_seri_adi")
 	private String kitapSeriAdi;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "yazar_id")
 	private Yazar yazar;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "yayin_evi_id")
 	private YayinEvi yayinEvi;
+
+	public Kitap() {
+
+	}
+
+	public Kitap(@NotNull(message = "Kitap Isbn Boş Bırakılamaz!") @Size(min = 12, max = 13) String kitapIsbn,
+			@NotNull(message = "Kitap Adı Boş Bırakılamaz!") @Size(min = 5, max = 100) String kitapAdi,
+			@NotNull(message = "Kitap Alt Adı Boş Bırakılamaz!") @Size(min = 5, max = 100) String kitapAltAdi,
+			@NotNull(message = "Kitap Seri Adı Boş Bırakılamaz!") @Size(min = 5, max = 100) String kitapSeriAdi,
+			Yazar yazar, YayinEvi yayinEvi) {
+
+		this.kitapIsbn = kitapIsbn;
+		this.kitapAdi = kitapAdi;
+		this.kitapAltAdi = kitapAltAdi;
+		this.kitapSeriAdi = kitapSeriAdi;
+		this.yazar = yazar;
+		this.yayinEvi = yayinEvi;
+	}
 
 	public String getKitapIsbn() {
 		return kitapIsbn;
@@ -92,6 +108,4 @@ public class Kitap {
 		this.yayinEvi = yayinEvi;
 	}
 
-	
-	
 }
